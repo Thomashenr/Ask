@@ -1,0 +1,19 @@
+p {
+}
+.img-circle {
+    width: 40px;
+    height: 36px;
+}
+.commenterTab {
+    padding: 0px;
+    text-align: center;
+    font-size: 12px;
+}
+.commenterTabInfo {
+    max-height: 300px;
+    overflow: scroll;
+}
+.commentatorPanel {
+    height: inherit;
+    max-height: inherit;
+}
