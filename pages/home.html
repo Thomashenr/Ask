@@ -2,28 +2,28 @@
     <div class="col-sm-12">
         <div class="col-sm-9 panel-default">
             <div class="panel-heading">
-            <h4>
-                What are you working on?
-            </h4>
-            <h5>
-                Get help or advice on all things associated with Commercial Real Estate.
-            </h5>
+                <h4>
+                    What are you working on?
+                </h4>
+                <h5>
+                    Get help or advice on all things associated with Commercial Real Estate.
+                </h5>
 
-            <div>
-                <div class="col-sm-2">
-                    <img src="../resources/images/download.jpg" class="img-circle"/>
+                <div>
+                    <div class="col-sm-2">
+                        <img src="../resources/images/download.jpg" class="img-circle"/>
+                    </div>
+                    <div class="col-sm-10">
+                        <input type="text" ng-model="postTitle" maxlength="30" class="form-control input-sm" placeholder="Example Title: &quot;How will an interest rate spike effect my property value?&quot;"/>
+                        <p class="pull-right">Characters Remaining: </p>
+                    </div>
                 </div>
-                <div class="col-sm-10">
-                    <input type="text" ng-model="postTitle" maxlength="30" class="form-control input-sm" placeholder="Example Title: &quot;How will an interest rate spike effect my property value?&quot;"/>
-                    <p class="pull-right">Characters Remaining: </p>
-                </div>
-            </div>
                 
                 <textarea type="text" ng-model="postDetails" class="form-control" placeholder="Tell us the details here, share photos if you have them"></textarea>
                 
     
                 <div class="row">
-                    <div class="btn-group col-sm-5" uib-dropdown is-open="status.isopen">
+                    <div class="btn-group col-sm-5" uib-dropdown>
                         <h5>Categorize Your Discussion</h5>
                         <button id="single-button" type="button" class="btn btn-primary btn-sm" uib-dropdown-toggle>
                             General Discussion/Question <span class="caret"></span>
@@ -34,13 +34,13 @@
                             <li role="menuitem"><a href="#/">Something else here</a></li>
                         </ul>
                     </div>
-                    
+
                     <div class="col-sm-4">
                         <h5>City (optional)</h5>
                         <input type="text" class="form-control input-sm" placeholder="Enter City Here"/>
                     </div>
-                    
-                    <div class="btn-group col-sm-3" uib-dropdown is-open="statusState.isopen">
+
+                    <div class="btn-group col-sm-3" uib-dropdown>
                         <h5>
                             State (optional)
                         </h5>
@@ -64,14 +64,14 @@
                         Yes, notify me when I recieve new answers to this question.
                     </label>
                 </div>
-                
+
                 <div class="checkbox">
                     <label>
                         <input type="checkbox" ng-model="parentScrollable2">
                         Share question on Facebook.
                     </label>
                 </div>
-                
+
                 <a href="#/" class="btn btn-primary" ng-click="createPost()">
                     Post
                 </a>
@@ -84,7 +84,7 @@
         <div class="col-sm-3 panel-default commentatorsPanel">
             <div class="panel-heading hidden-xs">
                 <h6><b>Top Commenters</b></h6>
-                
+
                 <uib-tabset class="row commenterTab" active="active">
                     <uib-tab class="commenterTab col-sm-4" index="0" heading="Today">
                         <div class="commenterTabInfo">
@@ -99,36 +99,74 @@
                             </div>
                         </div>
                     </uib-tab>
-                <uib-tab class="commenterTab col-sm-4" index="1" heading="This Week">
-                </uib-tab>
-                <uib-tab class="commenterTab col-sm-4" index="2" heading="This Month">
-                    
-                        <div class="col-sm-12" ng-repeat="item in participants">
-                            <div class="col-sm-3">
-                                <img src="../resources/images/download.jpg" class="img-circle">
-                                </img>
-                        </div>
-                        <div class="col-sm-9">
-                            <p>{{ item }}</p>
-                        </div>
-                        </div>
-                </uib-tab>
+                    <uib-tab class="commenterTab col-sm-4" index="1" heading="This Week">
+                    </uib-tab>
+                    <uib-tab class="commenterTab col-sm-4" index="2" heading="This Month">
+
+                            <div class="col-sm-12" ng-repeat="item in participants">
+                                <div class="col-sm-3">
+                                    <img src="../resources/images/download.jpg" class="img-circle">
+                                    </img>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p>{{ item }}</p>
+                                </div>
+                            </div>
+                    </uib-tab>
                 </uib-tabset>
+            </div>
         </div>
     </div>
     <div class="col-sm-12 panel-default">
         <div class="panel-body">
+            <div class="btn-group col-sm-5" uib-dropdown>
+                <button type="button" class="btn btn-default btn-sm" uib-dropdown-toggle>
+                    Sort By:<span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                    <li role="menuitem"><a href="#/">--</a></li>
+                    <li role="menuitem"><a href="#/">Newest</a></li>
+                    <li role="menuitem"><a href="#/">Oldest</a></li>
+                    <li role="menuitem"><a href="#/">Last Updated</a></li>
+                </ul>
+            </div>
+            <div class="pull-right">
+                <p>_ of _ Questions
+                    <button type="button" class="btn btn-default btn-sm">
+                        <span class="caret left"></span>
+                    </button>
+                    <button type="button" class="btn btn-default btn-sm">
+                        <span class="caret right"></span>
+                    </button>
+                </p>
+            </div>
         </div>
-        <div class="panel-heading">
-            <h4>Threads</h4>
+        <div class="panel-footer" ng-repeat="item in postList | orderBy: item.date">
+            <h4>{{ item.title }}</h4>
+            
+            <div class="col-sm-3">
+                <img class="img-circle" src="../resources/images/download.jpg">
+                </img>
+            </div>
+        
+            <div class="col-sm-9">
+                <p>Latest answer by {{ item.responses[0].author }}</p>
+                <p>{{ item.responses[0].date | date: short }} minutes ago</p>
+            </div>
+        
+        
+            <p>Added by {{ item.author }} | {{ item.date | date : short }} | {{ item.responses.length }} Comments</p>
+            <p>{{ item.responses[0].date | date: short }}</p>
+            <p>{{ item.responses[1].date | date: short }}</p>
+            <p>{{ item.responses[2].date | date: short }}</p>
+            <p>{{ item.responses[3].date | date: short }}</p>
+            <p>{{ dateN | date: short }}</p>
+            <p>{{ timeSince() }}</p>
+        
+            
+<!--            {{ item.date | date : short }}-->
         </div>
-        <div class="panel-footer" ng-repeat="item in postList">
-            {{ item.title }} 
-            {{ item.details }}
-            {{ item.date | date : short }}
-            {{  }}
+        <div class="panel-body">
         </div>
     </div>
-    
-</div>
 </div>

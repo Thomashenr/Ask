@@ -39,18 +39,37 @@ obieAsk.controller('homeController', function($scope) {
     $scope.postList = [];
     
     for (var i = 0; i < 10; i++) {
-    $scope.postObject = {
-        title: "Title Number:" + i,
-        details: "Details Number:" + i,
-        date: 1288323623006 + (i*1000000000)
-    };
+        $scope.postObject = {
+            title: "Title Number:" + i,
+            details: "Details Number:" + i,
+            date: 1288323623006 - (i*10000000000),
+            author: "Thomas B" + i,
+            responses: []
+        };
+        for (var j = 0; j < 4; j++) {
+            $scope.postObjectResponse = {
+                title: "Title Number:" + j,
+                details: "Details Number:" + j,
+                date: new Date(1282383623006 - (j*i*10000000000)),
+                author: "Thomas B" + j,
+            };
+
+            $scope.postObject.responses.push($scope.postObjectResponse);
+            $scope.postObject.responses.sort(function(a, b) { return b.date - a.date; });
+        
+        }
         $scope.postList.push($scope.postObject);
     }
     
-    //TODO add watch function to variables
-    //$scope.$watch('postTitle', function() {
-    //    $scope.city;
-    //});
+    $scope.timeSince = function(dateIn) {
+        
+        $scope.dateN = new Date(1282383623006);
+        var result = new Date($scope.dateN - dateIn);
+        
+    };
+    
+    $scope.dateM = new Date(1282383623006 + 10000000000);
+    
     
     $scope.createPost = function() {
     $scope.postObject = {
