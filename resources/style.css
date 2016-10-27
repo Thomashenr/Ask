@@ -4,7 +4,7 @@
     height: 36px;
 }
 .commenterTab {
-    padding: 0px;
+    padding: 0px !important;
     text-align: center;
     font-size: 12px;
 }
@@ -16,6 +16,12 @@
     height: inherit;
     max-height: inherit;
 }
+
+
+
+
+
+
 .caret.right {
     border-bottom: 4px solid transparent;
     border-top: 4px solid transparent;

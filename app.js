@@ -17,7 +17,7 @@ obieAsk.config(function ($routeProvider) {
 //Services
 
 //Controllers
-obieAsk.controller('homeController', function($scope) {
+obieAsk.controller('homeController',['$scope', 'orderByFilter', function($scope, orderBy) {
   $scope.status = {
     isopen: false
   };
@@ -36,48 +36,72 @@ obieAsk.controller('homeController', function($scope) {
     
     $scope.postTitle;
     $scope.postDetails;
-    $scope.postList = [];
-    
-    for (var i = 0; i < 10; i++) {
-        $scope.postObject = {
-            title: "Title Number:" + i,
-            details: "Details Number:" + i,
-            date: 1288323623006 - (i*10000000000),
-            author: "Thomas B" + i,
+    $scope.postList = [
+        {            
+            title: "Thomas Title",
+            details: "Details by Thomas",
+            date: 1288323623006 - (10000000000),
+            author: "Thomas B",
+            responses: [
+                {
+                title: "Coop's response",
+                details: "Response by Coop",
+                date: new Date(1282383623006 + (5000000000)),
+                author: "Coop",
+                },
+                {
+                title: "Ed's response",
+                details: "Response by Ed",
+                date: new Date(1282383623006 + (7500000000)),
+                author: "Ed",
+                }
+            ]
+        },
+        {            
+            title: "Ryan Title",
+            details: "Details by Ryan",
+            date: 1288323623006 - (20000000000),
+            author: "Ryan L",
             responses: []
-        };
-        for (var j = 0; j < 4; j++) {
-            $scope.postObjectResponse = {
-                title: "Title Number:" + j,
-                details: "Details Number:" + j,
-                date: new Date(1282383623006 - (j*i*10000000000)),
-                author: "Thomas B" + j,
-            };
-
-            $scope.postObject.responses.push($scope.postObjectResponse);
-            $scope.postObject.responses.sort(function(a, b) { return b.date - a.date; });
-        
+        },
+        {            
+            title: "Chris' Title",
+            details: "Details By Chris:",
+            date: 1288323623006 - (30000000000),
+            author: "Chris",
+            responses: [
+                {
+                title: "J's response",
+                details: "Response by J",
+                date: new Date(1282383623006 + (2500000000)),
+                author: "J",
+                }
+            ]
         }
-        $scope.postList.push($scope.postObject);
-    }
+        
+    ];
     
-    $scope.timeSince = function(dateIn) {
-        
-        $scope.dateN = new Date(1282383623006);
-        var result = new Date($scope.dateN - dateIn);
-        
+    $scope.sortBy = function(propertyNameIn, reverseBoolIn) {
+        $scope.postList = orderBy($scope.postList, propertyNameIn, reverseBoolIn);
     };
-    
-    $scope.dateM = new Date(1282383623006 + 10000000000);
     
     
     $scope.createPost = function() {
-    $scope.postObject = {
-        title: $scope.postTitle,
-        details: $scope.postDetails
-    };
-        $scope.postList.push($scope.postObject);
+        if ($scope.postTitle != null && $scope.postDetails != null) {
+            $scope.postObject = {
+                title: $scope.postTitle,
+                details: $scope.postDetails,
+                date: new Date(),
+                author: 'Posting Author',
+                responses: []
+            };
+            $scope.postList.push($scope.postObject);
+            $scope.postList = orderBy($scope.postList, 'date', true);
+            $scope.postTitle = null;
+            $scope.postDetails = null;
+        }
+        
     };
     
 
-});
+}]);

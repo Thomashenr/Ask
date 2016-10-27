@@ -15,7 +15,7 @@
                     </div>
                     <div class="col-sm-10">
                         <input type="text" ng-model="postTitle" maxlength="30" class="form-control input-sm" placeholder="Example Title: &quot;How will an interest rate spike effect my property value?&quot;"/>
-                        <p class="pull-right">Characters Remaining: </p>
+                        <p class="pull-right">Characters Remaining: {{ (70-(postTitle.length)) }}</p>
                     </div>
                 </div>
                 
@@ -124,10 +124,11 @@
                     Sort By:<span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
-                    <li role="menuitem"><a href="#/">--</a></li>
-                    <li role="menuitem"><a href="#/">Newest</a></li>
-                    <li role="menuitem"><a href="#/">Oldest</a></li>
-                    <li role="menuitem"><a href="#/">Last Updated</a></li>
+                    <li><a>--</a></li>
+                    <li><a ng-click="sortBy('date', true)">Newest</a></li>
+                    <li><a ng-click="sortBy('date', false)">Oldest</a></li>
+                    <li><a ng-click="sortBy('responses.length', true)">Most Responses</a></li>
+                    <li><a ng-click="sortBy('responses.length', false)">Fewest Responses</a></li>
                 </ul>
             </div>
             <div class="pull-right">
@@ -141,7 +142,7 @@
                 </p>
             </div>
         </div>
-        <div class="panel-footer" ng-repeat="item in postList | orderBy: item.date">
+        <div class="panel-footer" ng-repeat="item in postList | orderBy:date">
             <h4>{{ item.title }}</h4>
             
             <div class="col-sm-3">
@@ -151,20 +152,14 @@
         
             <div class="col-sm-9">
                 <p>Latest answer by {{ item.responses[0].author }}</p>
-                <p>{{ item.responses[0].date | date: short }} minutes ago</p>
+                <p>On: {{ (item.responses[0].date) | date: short }}</p>
             </div>
         
         
             <p>Added by {{ item.author }} | {{ item.date | date : short }} | {{ item.responses.length }} Comments</p>
-            <p>{{ item.responses[0].date | date: short }}</p>
-            <p>{{ item.responses[1].date | date: short }}</p>
-            <p>{{ item.responses[2].date | date: short }}</p>
-            <p>{{ item.responses[3].date | date: short }}</p>
-            <p>{{ dateN | date: short }}</p>
-            <p>{{ timeSince() }}</p>
         
             
-<!--            {{ item.date | date : short }}-->
+<!--      {{ item.date | date : short }}    -->
         </div>
         <div class="panel-body">
         </div>
