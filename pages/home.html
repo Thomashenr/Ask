@@ -2,6 +2,9 @@
     <div class="col-sm-12">
         <div class="col-sm-9 panel-default">
             <div class="panel-heading">
+                
+
+                
                 <h4>
                     What are you working on?
                 </h4>
@@ -81,12 +84,12 @@
             </div>
         </div>
         
-        <div class="col-sm-3 panel-default commentatorsPanel">
+        <div class="col-sm-3 panel-default commenterTab">
             <div class="panel-heading hidden-xs">
                 <h6><b>Top Commenters</b></h6>
 
-                <uib-tabset class="row commenterTab" active="active">
-                    <uib-tab class="commenterTab col-sm-4" index="0" heading="Today">
+                <uib-tabset class="row" active="active">
+                    <uib-tab class="col-sm-4" index="0" heading="Today">
                         <div class="commenterTabInfo">
                             <div class="col-sm-12" ng-repeat="item in participants">
                                 <div class="col-sm-3">
@@ -99,9 +102,9 @@
                             </div>
                         </div>
                     </uib-tab>
-                    <uib-tab class="commenterTab col-sm-4" index="1" heading="This Week">
+                    <uib-tab class="col-sm-4" index="1" heading="This Week">
                     </uib-tab>
-                    <uib-tab class="commenterTab col-sm-4" index="2" heading="This Month">
+                    <uib-tab class="col-sm-4" index="2" heading="This Month">
 
                             <div class="col-sm-12" ng-repeat="item in participants">
                                 <div class="col-sm-3">
@@ -142,7 +145,7 @@
                 </p>
             </div>
         </div>
-        <div class="panel-footer" ng-repeat="item in postList | orderBy:date">
+        <button class="col-sm-12 panel-footer" ng-repeat-start="item in postList | orderBy:date" data-toggle="modal" data-target=".myModal">
             <h4>{{ item.title }}</h4>
             
             <div class="col-sm-3">
@@ -155,12 +158,48 @@
                 <p>On: {{ (item.responses[0].date) | date: short }}</p>
             </div>
         
-        
             <p>Added by {{ item.author }} | {{ item.date | date : short }} | {{ item.responses.length }} Comments</p>
         
-            
-<!--      {{ item.date | date : short }}    -->
+        
+        
+        </button>
+
+<div class="container" ng-repeat-end>
+  <div class="modal fade myModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Obie Ask</h4>
         </div>
+        <div class="modal-body">
+            <div class="col-sm-12 panel-footer">
+                <h4>{{ item.title }}</h4>
+                <h6>{{ item.author }} | {{ item.date | date }}</h6>
+
+                <div class="col-sm-3">
+                    <img class="img-circle" src="../resources/images/download.jpg">
+                    </img>
+                </div>
+
+                <div class="col-sm-9">
+                    <p>Latest answer by {{ item.responses[0].author }}</p>
+                    <p>On: {{ (item.responses[0].date) | date: short }}</p>
+                </div>
+
+                <p>Added by {{ item.author }} | {{ item.date | date : short }} | {{ item.responses.length }} Comments</p>
+
+
+
+            </div>   
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
         <div class="panel-body">
         </div>
     </div>

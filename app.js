@@ -26,7 +26,7 @@ obieAsk.controller('homeController',['$scope', 'orderByFilter', function($scope,
   };
     $scope.parentScrollable = "";
     $scope.parentScrollable2 = "";
-    
+
     $scope.participants = [];
     // Fill with dummy info
     for (var i = 0; i < 10; ++i) {
@@ -80,6 +80,93 @@ obieAsk.controller('homeController',['$scope', 'orderByFilter', function($scope,
         }
         
     ];
+    $scope.now = new Date();
+    $scope.nowDate = new Date(1282383623006 +  (200867000000));
+    $scope.thenDate = new Date(1282383623006 + (200866000000));
+    
+    $scope.timeDiff = function(dateIn) {
+        
+        var now = new Date();
+        var inYear = dateIn.getFullYear();
+        var nowYear = now.getFullYear();
+        var inMonth = dateIn.getMonth();
+        var nowMonth = now.getMonth();
+        var inDay = dateIn.getDate();
+        var nowDay = now.getDate();
+        
+        var yearDiff = now.getFullYear() - dateIn.getFullYear();
+        var monthDiff = now.getMonth() - dateIn.getMonth();
+        var dayDiff = now.getDate() - dateIn.getDate();
+        var hourDiff = now.getHours() - dateIn.getHours();
+        var minuteDiff = now.getMinutes() - dateIn.getMinutes();
+        
+        
+        if (yearDiff > 1) {
+            return yearDiff + " years ago";
+        }
+        else if (yearDiff == 1) {
+            monthDiff = 12 - dateIn.getMonth() + now.getMonth();
+        }
+        
+        if (monthDiff > 1) {
+            return monthDiff + " months ago";
+        }
+        
+        else if (monthDiff == 1) {
+            var daysInMonth;
+            if (inMonth == 1) {
+                if ((inYear % 4) == 0) {
+                    daysInMonth = 29;
+                }
+                else {
+                    daysInMonth = 28;
+                }
+            }
+            else if (inMonth == 0 ||
+                inMonth == 2 ||
+                inMonth == 4 ||
+                inMonth == 6 ||
+                inMonth == 7 ||
+                inMonth == 9 ||
+                inMonth == 11) 
+            {
+                daysInMonth = 31;
+            }
+            else {
+                daysInMonth = 30;
+            }
+            
+            dayDiff = daysInMonth - inDay + nowDay;
+        }
+        
+        
+        if (dayDiff > 1) {
+            return dayDiff + " days ago";
+        }
+        else if (dayDiff == 1) {
+            hourDiff = (24 - dateIn.getHours() + now.getHours());
+        }
+        
+        if (hourDiff > 1) {
+            return hourDiff + " hours ago";
+        }
+        else if (hourDiff == 1) {
+            minuteDiff = 60 - dateIn.getMinutes() + now.getMinutes();
+        }
+            
+        if (minuteDiff > 60) {
+            return "about an hour ago";
+        }
+        else if (minuteDiff > 1) {
+            return minuteDiff + " minutes ago";            
+        }
+        else {
+            return hourDiff + "moments ago";
+        }
+        
+    };
+    $scope.difference2 = $scope.nowDate.getDay() - $scope.thenDate.getDay();
+    
     
     $scope.sortBy = function(propertyNameIn, reverseBoolIn) {
         $scope.postList = orderBy($scope.postList, propertyNameIn, reverseBoolIn);
@@ -102,6 +189,8 @@ obieAsk.controller('homeController',['$scope', 'orderByFilter', function($scope,
         }
         
     };
-    
+    $scope.fillInfo = function(infoIn) {
+        $scope.threadTitle = infoIn;
+    };
 
 }]);

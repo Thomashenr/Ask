@@ -4,7 +4,10 @@
     height: 36px;
 }
 .commenterTab {
-    padding: 0px !important;
+    height: 300px;
+    width: 200px;
+    padding: 0px;
+    margin: 0px;
     text-align: center;
     font-size: 12px;
 }
@@ -12,11 +15,18 @@
     max-height: 300px;
     overflow: scroll;
 }
-.commentatorPanel {
-    height: inherit;
-    max-height: inherit;
-}
 
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+    border-left-width: 0;
+    border-right-width: 0;
+    border-bottom: 2px solid #0095e2;
+    
+}
+.nav-tabs>li>a {
+    width: 82px;
+    padding: 4px 0 3px;
+    
+}
 
 
 
