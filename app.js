@@ -39,19 +39,19 @@ obieAsk.controller('homeController',['$scope', 'orderByFilter', function($scope,
     $scope.postList = [
         {            
             title: "Thomas Title",
-            details: "Details by Thomas",
+            details: "Details by ThomasDetails by ThomasDetails by ThomasDetails by ThomasDetails by ThomasDetails by ThomasDetails by Thomas",
             date: 1288323623006 - (10000000000),
             author: "Thomas B",
             responses: [
                 {
                 title: "Coop's response",
-                details: "Response by Coop",
+                details: "Response by CoopResponse by CoopResponse by CoopResponse by CoopResponse by Coop",
                 date: new Date(1282383623006 + (5000000000)),
                 author: "Coop",
                 },
                 {
                 title: "Ed's response",
-                details: "Response by Ed",
+                details: "Response by EdResponse by EdResponse by EdResponse by EdResponse by EdResponse by EdResponse by Ed",
                 date: new Date(1282383623006 + (7500000000)),
                 author: "Ed",
                 }
@@ -189,8 +189,24 @@ obieAsk.controller('homeController',['$scope', 'orderByFilter', function($scope,
         }
         
     };
-    $scope.fillInfo = function(infoIn) {
-        $scope.threadTitle = infoIn;
+    $scope.thread;
+    $scope.fillInfo = function(itemIn) {
+        $scope.thread = itemIn;
+    };
+    
+    $scope.commentDetails;
+    $scope.submitComment = function() {
+        
+            var comment = {
+                    title: "User's response",
+                    details: $scope.commentDetails,
+                    date: new Date(),
+                    author: "User"
+                    };
+            $scope.thread.responses.push(comment);
+            $scope.commentDetails = null;
+            
+        
     };
 
 }]);

@@ -1,65 +1,65 @@
 <div class="row">
-    <div class="col-sm-12">
-        <div class="col-sm-9 panel-default">
-            <div class="panel-heading">
+    <div class="container">
+        <div class="col-sm-9">
+            <div class="review-container">
                 
 
-                
-                <h4>
-                    What are you working on?
-                </h4>
-                <h5>
-                    Get help or advice on all things associated with Commercial Real Estate.
-                </h5>
 
-                <div>
-                    <div class="col-sm-2">
-                        <img src="../resources/images/download.jpg" class="img-circle"/>
-                    </div>
-                    <div class="col-sm-10">
-                        <input type="text" ng-model="postTitle" maxlength="30" class="form-control input-sm" placeholder="Example Title: &quot;How will an interest rate spike effect my property value?&quot;"/>
-                        <p class="pull-right">Characters Remaining: {{ (70-(postTitle.length)) }}</p>
-                    </div>
-                </div>
-                
-                <textarea type="text" ng-model="postDetails" class="form-control" placeholder="Tell us the details here, share photos if you have them"></textarea>
-                
-    
-                <div class="row">
-                    <div class="btn-group col-sm-5" uib-dropdown>
-                        <h5>Categorize Your Discussion</h5>
-                        <button id="single-button" type="button" class="btn btn-primary btn-sm" uib-dropdown-toggle>
-                            General Discussion/Question <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
-                            <li role="menuitem"><a href="#/">Action</a></li>
-                            <li role="menuitem"><a href="#/">Another action</a></li>
-                            <li role="menuitem"><a href="#/">Something else here</a></li>
-                        </ul>
+                    <h1>
+                        What are you working on?
+                    </h1>
+                    <h5>
+                        Get help or advice on all things associated with Commercial Real Estate.
+                    </h5>
+
+                    <div>
+                        <div class="col-sm-2">
+                            <img src="../resources/images/download.jpg" class="img-circle"/>
+                        </div>
+                        <div class="col-sm-10">
+                            <input type="text" ng-model="postTitle" maxlength="30" class="form-control input-sm" placeholder="Example Title: &quot;How will an interest rate spike effect my property value?&quot;"/>
+                            <p class="pull-right">Characters Remaining: {{ (70-(postTitle.length)) }}</p>
+                        </div>
                     </div>
 
-                    <div class="col-sm-4">
-                        <h5>City (optional)</h5>
-                        <input type="text" class="form-control input-sm" placeholder="Enter City Here"/>
-                    </div>
+                    <textarea type="text" ng-model="postDetails" class="form-control" placeholder="Tell us the details here, share photos if you have them"></textarea>
 
-                    <div class="btn-group col-sm-3" uib-dropdown>
-                        <h5>
-                            State (optional)
-                        </h5>
-                        <button id="state-button" onchange="" type="button" class="btn btn-primary" uib-dropdown-toggle>
-                            --
-                            <span class="caret">
-                            </span>
-                        </button>
-                        <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="state-button">
-                            <li role="menuitem"><a href="#/">(none)</a></li>
-                            <li role="menuitem"><a href="#/">Alabama</a></li>
-                            <li role="menuitem"><a href="#/">Alaska</a></li>
-                            <li role="menuitem"><a href="#/">Arkansas</a></li>
-                        </ul>
+
+                    <div class="row">
+                        <div class="btn-group col-sm-5" uib-dropdown>
+                            <h5>Categorize Your Discussion</h5>
+                            <button id="single-button" type="button" class="btn btn-primary btn-sm" uib-dropdown-toggle>
+                                General Discussion/Question <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                                <li role="menuitem"><a href="#/">Action</a></li>
+                                <li role="menuitem"><a href="#/">Another action</a></li>
+                                <li role="menuitem"><a href="#/">Something else here</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <h5>City (optional)</h5>
+                            <input type="text" class="form-control input-sm" placeholder="Enter City Here"/>
+                        </div>
+
+                        <div class="btn-group col-sm-3" uib-dropdown>
+                            <h5>
+                                State (optional)
+                            </h5>
+                            <button id="state-button" onchange="" type="button" class="btn btn-primary" uib-dropdown-toggle>
+                                --
+                                <span class="caret">
+                                </span>
+                            </button>
+                            <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="state-button">
+                                <li role="menuitem"><a href="#/">(none)</a></li>
+                                <li role="menuitem"><a href="#/">Alabama</a></li>
+                                <li role="menuitem"><a href="#/">Alaska</a></li>
+                                <li role="menuitem"><a href="#/">Arkansas</a></li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
                 
                 <div class="checkbox">
                     <label>
@@ -84,11 +84,11 @@
             </div>
         </div>
         
-        <div class="col-sm-3 panel-default commenterTab">
-            <div class="panel-heading hidden-xs">
-                <h6><b>Top Commenters</b></h6>
-
-                <uib-tabset class="row" active="active">
+        <div class="col-sm-3 hidden-sm topCommenters">
+            <div class="review-container">
+            <h5><b>Top Commenters</b></h5>
+            <h5>
+                <uib-tabset style="padding-left:0px!important" active="active">
                     <uib-tab class="col-sm-4" index="0" heading="Today">
                         <div class="commenterTabInfo">
                             <div class="col-sm-12" ng-repeat="item in participants">
@@ -117,12 +117,13 @@
                             </div>
                     </uib-tab>
                 </uib-tabset>
-            </div>
+            </h5>
         </div>
+    </div>
     </div>
     <div class="col-sm-12 panel-default">
         <div class="panel-body">
-            <div class="btn-group col-sm-5" uib-dropdown>
+            <div class="btn-group" uib-dropdown>
                 <button type="button" class="btn btn-default btn-sm" uib-dropdown-toggle>
                     Sort By:<span class="caret"></span>
                 </button>
@@ -145,37 +146,9 @@
                 </p>
             </div>
         </div>
-        <button class="col-sm-12 panel-footer" ng-repeat-start="item in postList | orderBy:date" data-toggle="modal" data-target=".myModal">
-            <h4>{{ item.title }}</h4>
-            
-            <div class="col-sm-3">
-                <img class="img-circle" src="../resources/images/download.jpg">
-                </img>
-            </div>
-        
-            <div class="col-sm-9">
-                <p>Latest answer by {{ item.responses[0].author }}</p>
-                <p>On: {{ (item.responses[0].date) | date: short }}</p>
-            </div>
-        
-            <p>Added by {{ item.author }} | {{ item.date | date : short }} | {{ item.responses.length }} Comments</p>
-        
-        
-        
-        </button>
-
-<div class="container" ng-repeat-end>
-  <div class="modal fade myModal" role="dialog">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Obie Ask</h4>
-        </div>
-        <div class="modal-body">
-            <div class="col-sm-12 panel-footer">
+        <div class="col-sm-12 review-container" >
+            <div class="threadPost" ng-repeat="item in postList | orderBy:date" data-toggle="modal" data-target=".myModal" ng-click="fillInfo(item)">
                 <h4>{{ item.title }}</h4>
-                <h6>{{ item.author }} | {{ item.date | date }}</h6>
 
                 <div class="col-sm-3">
                     <img class="img-circle" src="../resources/images/download.jpg">
@@ -188,19 +161,49 @@
                 </div>
 
                 <p>Added by {{ item.author }} | {{ item.date | date : short }} | {{ item.responses.length }} Comments</p>
+            </div>
+        </div>
+<div class="container">
+  <div class="modal fade myModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Obie Ask</h4>
+        </div>
+        <div class="modal-body">
+            <div class="col-sm-12 panel-footer">
 
+                <div class="col-sm-3">
+                    <img class="img-circle" src="../resources/images/download.jpg">
+                    </img>
+                </div>
 
+                <div class="col-sm-9">
+                <p>{{thread.title}}</p>
 
+                <p>{{ thread.author }} | {{ thread.date | date : short }}</p>
+                </div>
+            
+                <br/>
+                    <p>{{thread.details}}</p>
+                <br/>
+                <h4>Comments ({{thread.responses.length}})</h4>
+                <div class="panel-footer" ng-repeat="comment in thread.responses">
+                    <h5>{{comment.author}}</h5>
+                    <p>{{comment.details}}</p>
+                    <p class="pull-right">{{comment.date | date}}</p>
+                    <br/>
+                </div>
             </div>   
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <textarea type="text" ng-model="commentDetails" class="form-control" placeholder="Tell us the details here, share photos if you have them"></textarea>
+            <button type="button" class="btn btn-primary" ng-click="submitComment()">Submit</button>
         </div>
       </div>
     </div>
   </div>
 </div>
-        <div class="panel-body">
-        </div>
     </div>
 </div>
