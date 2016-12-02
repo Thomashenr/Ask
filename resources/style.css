@@ -4,6 +4,7 @@ body {
 .review-container {
     background: #fff;
     margin-top: 3rem;
+    padding: 15px;
 }
 
 .review-container .wrapper h1 {
